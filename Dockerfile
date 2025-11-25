@@ -3,11 +3,11 @@ FROM node:22-alpine
 WORKDIR /app
 
 # Copie des dépendances d'abord (cache)
-COPY src/package*.json ./
+COPY src/package.json /app/package.json
 RUN npm install --only=production && npm cache clean --force
 
 # Copie du code source
-COPY src/ ./
+COPY src/ /app/
 
 # Utilisateur non-root
 RUN addgroup -g 1001 -S nodejs \
